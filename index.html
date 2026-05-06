@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Untitled</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIGC艺术设计师 - 个人作品集</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: #fff;
+            color: #222;
+            line-height: 1.6;
+        }
+        #navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.95);
+            z-index: 999;
+            transition: all 0.3s;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            color: #222;
+        }
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        .nav-link {
+            text-decoration: none;
+            color: #333;
+            position: relative;
+        }
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #222;
+            transition: width 0.2s;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            padding: 10px 30px;
+            gap: 12px;
+            background: #fff;
+            border-top: 1px solid #eee;
+        }
+        .mobile-menu a {
+            text-decoration: none;
+            color: #333;
+        }
+        #home {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            padding-top: 60px;
+        }
+        .home-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        #home h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+        #home h2 {
+            font-size: 22px;
+            color: #666;
+            font-weight: normal;
+            margin-bottom: 16px;
+        }
+        #home p {
+            color: #777;
+            margin-bottom: 30px;
+        }
+        .btn-group {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 12px 26px;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .btn-primary {
+            background: #111;
+            color: #fff;
+        }
+        .btn-primary:hover {
+            background: #333;
+            transform: translateY(-2px);
+        }
+        .btn-secondary {
+            border: 1px solid #ddd;
+            color: #222;
+        }
+        .btn-secondary:hover {
+            border-color: #888;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 50px;
+        }
+        #works {
+            padding: 100px 0;
+            background: #f9f9f9;
+        }
+        .work-group {
+            margin-bottom: 80px;
+        }
+        .work-group h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+        .grid {
+            display: grid;
+            gap: 20px;
+        }
+        .grid-2 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        .grid-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        .card {
+            border-radius: 10px;
+            overflow: hidden;
+            transition: 0.25s;
+            cursor: pointer;
+        }
+        .card img, .card video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+        .mt-20 { margin-top: 20px; }
+        #about {
+            padding: 100px 0;
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        #about h3 {
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+        #about p {
+            color: #555;
+            margin-bottom: 8px;
+        }
+        #contact {
+            padding: 100px 0;
+            background: #f9f9f9;
+            text-align: center;
+        }
+        .contact-info {
+            margin-bottom: 30px;
+            color: #555;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .modal-img {
+            max-width: 90%;
+            max-height: 90vh;
+        }
+        .close {
+            position: absolute;
+            top: 20px; right: 30px;
+            color: white;
+            font-size: 36px;
+            cursor: pointer;
+        }
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #888;
+            font-size: 14px;
+        }
+        @media (max-width: 768px) {
+            .nav-menu { display: none; }
+            .menu-btn { display: block; }
+            .grid-2, .grid-3 { grid-template-columns: 1fr; }
+            .about-grid { grid-template-columns: 1fr; }
+            #home h1 { font-size: 36px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav id="navbar">
+    <div class="nav-container">
+        <a class="logo" href="#home">AIGC DESIGN</a>
+        <ul class="nav-menu">
+            <li><a href="#home" class="nav-link">首页</a></li>
+            <li><a href="#works" class="nav-link">作品展示</a></li>
+            <li><a href="#about" class="nav-link">关于我</a></li>
+            <li><a href="#contact" class="nav-link">联系方式</a></li>
+        </ul>
+        <button id="menuBtn" class="menu-btn">☰</button>
+    </div>
+    <div id="mobileMenu" class="mobile-menu">
+        <a href="#home">首页</a>
+        <a href="#works">作品展示</a>
+        <a href="#about">关于我</a>
+        <a href="#contact">联系方式</a>
+    </div>
+</nav>
+
+<section id="home">
+    <div class="home-container">
+        <h1>孙煜琰</h1>
+        <h2>AIGC内容创作者｜AI图片生成师｜运营｜剪辑</h2>
+        <p>艺术学 × 音乐学双背景<br>全流程视觉与动态创作</p>
+        <div class="btn-group">
+            <a href="#works" class="btn btn-primary">浏览作品</a>
+            <a href="#contact" class="btn btn-secondary">联系我</a>
+        </div>
+    </div>
+</section>
+
+<section id="works">
+    <div class="container">
+        <h2 class="section-title">作品展示</h2>
+        <div class="work-group">
+            <h3>插画设计</h3>
+            <div class="grid grid-3">
+                <div class="card"><img src="https://img.cdn1.vip/i/69f1a767a5ef6_1777444711.webp" alt="作品"></div>
+                <div class="card"><img src="https://img.cdn1.vip/i/69f1a76ad999d_1777444714.webp" alt="作品"></div>
+                <div class="card"><img src="https://img.cdn1.vip/i/69f1a76b404b6_1777444715.webp" alt="作品"></div>
+                <div class="card"><img src="https://img.cdn1.vip/i/69f1a76b427ce_1777444715.webp" alt="作品"></div>
+                <div class="card"><img src="https://img.cdn1.vip/i/69f1a77111b3f_1777444721.webp" alt="作品"></div>
+                <div class="card"><img src="https://img.cdn1.vip/i/69f1a7723a027_1777444722.webp" alt="作品"></div>
+            </div>
+        </div>
+        <div class="work-group">
+            <h3>海报设计</h3>
+            <div class="grid grid-2">
+                <div class="card"><img src="https://s41.ax1x.com/2026/04/28/peIPzOs.jpg" alt="作品"></div>
+                <div class="card"><img src="https://s41.ax1x.com/2026/04/28/peIipmn.jpg" alt="作品"></div>
+                <div class="card"><img src="https://s41.ax1x.com/2026/04/28/peIi9wq.jpg" alt="作品"></div>
+                <div class="card"><img src="https://s41.ax1x.com/2026/04/28/peIPwz4.jpg" alt="作品"></div>
+            </div>
+        </div>
+        <div class="work-group">
+            <h3>IP形象设计</h3>
+            <div class="grid grid-2">
+                <div class="card"><img src="https://s41.ax1x.com/2026/04/28/peIPdWF.jpg" alt="作品"></div>
+                <div class="card"><img src="https://s41.ax1x.com/2026/04/28/peIPtoV.jpg" alt="作品"></div>
+            </div>
+        </div>
+        <div class="work-group">
+            <h3>水墨动画全案</h3>
+            <div class="grid grid-3">
+                <div class="card"><img src="https://s41.ax1x.com/2026/04/28/peIiikV.jpg" alt="作品"></div>
+                <div class="card"><img src="https://s41.ax1x.com/2026/04/28/peIiCT0.jpg" alt="作品"></div>
+                <div class="card"><img src="https://img.cdn1.vip/i/69f21e3d8d158_1777475133.webp" alt="作品"></div>
+            </div>
+           <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+    <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=116487180525023&bvid=BV1a49QBAEGs&cid=37941675145&p=1&autoplay=0" 
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+            frameborder="0" 
+            allowfullscreen="true">
+    </iframe>
+</div>
+        </div>
+        <div class="work-group">
+            <h3>Nomad 3D建模</h3>
+            <div class="grid grid-3">
+                <div class="card"><img src="https://img.cdn1.vip/i/69f1a857bbd98_1777444951.webp" alt="作品"></div>
+                <div class="card"><img src="https://img.cdn1.vip/i/69f1a8583f3a9_1777444952.webp" alt="作品"></div>
+                <div class="card"><img src="https://img.cdn1.vip/i/69f1a8573bf38_1777444951.webp" alt="作品"></div>
+                <div class="card"><img src="https://img.cdn1.vip/i/69f1a86012b78_1777444960.webp" alt="作品"></div>
+                <div class="card"><img src="https://img.cdn1.vip/i/69f1a8616991b_1777444961.webp" alt="作品"></div>
+            </div>
+        </div>
+        <div class="work-group">
+            <h3>视频剪辑</h3>
+            <div class="grid grid-2">
+               <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+    <iframe 
+        src="//player.bilibili.com/player.html?isOutside=true&aid=412854716&bvid=BV1xV411Z7ND&cid=181701225&p=1&autoplay=0" 
+        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+        frameborder="0" 
+        allowfullscreen="true">
+    </iframe>
+</div>
+                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+    <iframe 
+        src="//player.bilibili.com/player.html?isOutside=true&aid=116487213948375&bvid=BV1h89QBAEzS&cid=37941742793&p=1&autoplay=0" 
+        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+        frameborder="0" 
+        allowfullscreen="true">
+    </iframe>
+</div>
+            </div>
+        </div>
+        <div class="work-group">
+            <h3>绘画作品</h3>
+            <div class="grid grid-3">
+                <div class="card"><img src="https://img.cdn1.vip/i/69f1a86cd35a9_1777444972.webp" alt="作品"></div>
+                <div class="card"><img src="https://img.cdn1.vip/i/69f1a86be8da1_1777444971.webp" alt="作品"></div>
+                <div class="card"><img src="https://img.cdn1.vip/i/69f1a86faee8a_1777444975.webp" alt="作品"></div>
+                <div class="card"><img src="https://img.cdn1.vip/i/69f1a870c864c_1777444976.webp" alt="作品"></div>
+                <div class="card"><img src="https://img.cdn1.vip/i/69f1a86e47c64_1777444974.webp" alt="作品"></div>
+                <div class="card"><img src="https://img.cdn1.vip/i/69f1a86adef5c_1777444970.webp" alt="作品"></div>
+            </div>
+        </div>
+        <div class="work-group">
+            <h3>AI音频音乐设计</h3>
+           <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+    <iframe 
+        src="//player.bilibili.com/player.html?isOutside=true&aid=116488539345264&bvid=BV1ie9xBeEQJ&cid=26006460278&p=1&autoplay=0" 
+        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+        frameborder="0" 
+        allowfullscreen="true">
+    </iframe>
+</div>
+        </div>
+    </div>
+</section>
+
+<section id="about">
+    <div class="container">
+        <h2 class="section-title">关于我</h2>
+        <div class="about-grid">
+            <div>
+                <h3>教育背景</h3>
+                <p>艺术学硕士 | 曲阜师范大学</p>
+                <p>音乐学学士 | 吉林师范大学</p>
+                <h3 style="margin-top:20px">实习经历</h3>
+                <p>实习生 | 山东新浪</p>
+                <p>视频剪辑与运营实习生 | 舞蹈工作室</p>
+            </div>
+            <div>
+                <h3>技能特长</h3>
+                <p>✅ 插画 / 海报 / IP设计</p>
+                <p>✅ 水墨动画 / 动态视觉</p>
+                <p>✅ Nomad 3D建模</p>
+                <p>✅ 视频剪辑与包装</p>
+                <p>✅ AI音乐与音频设计</p>
+                <p>✅ AIGC全流程创作</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contact">
+    <div class="container">
+        <h2 class="section-title">联系方式</h2>
+        <div class="contact-info">
+            <p>📞 电话：158 5310 2281</p>
+            <p>📩 邮箱：1072006269@qq.com</p>
+            <p>🎯 求职意向：AIGC设计、AI产品助理、运营、剪辑</p>
+        </div>
+        <a href="#" class="btn btn-primary">下载简历 PDF</a>
+    </div>
+</section>
+
+<div id="modal" class="modal">
+    <span id="closeModal" class="close">&times;</span>
+    <img id="modalImg" class="modal-img">
+</div>
+
+<footer>
+    <p>© 2025 孙煜琰 - AIGC艺术设计师 版权所有</p>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.style.padding = window.scrollY > 30 ? '10px 0' : '0';
+        });
+
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.style.display = mobileMenu.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        document.querySelectorAll('.mobile-menu a').forEach(a => {
+            a.addEventListener('click', () => mobileMenu.style.display = 'none');
+        });
+
+        const modal = document.getElementById('modal');
+        const modalImg = document.getElementById('modalImg');
+        const closeModal = document.getElementById('closeModal');
+
+        document.querySelectorAll('.card img').forEach(img => {
+            img.addEventListener('click', () => {
+                modal.style.display = 'flex';
+                modalImg.src = img.src;
+            });
+        });
+
+        closeModal.onclick = () => modal.style.display = 'none';
+        modal.onclick = (e) => { if (e.target === modal) modal.style.display = 'none' };
+
+        document.querySelectorAll('img').forEach(img => img.loading = 'lazy');
+    });
+</script>
+</body>
+</html>
+    
+  </body>
+  
+</html>
